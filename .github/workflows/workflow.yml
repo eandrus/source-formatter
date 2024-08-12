@@ -12,15 +12,15 @@ jobs:
         with:
           python-version: '3.11'
           architecture: 'x86'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
       - uses: Nuitka/Nuitka-Action@main
         with:
           nuitka-version: main
           script-name: formatter.py
           onefile: true
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
