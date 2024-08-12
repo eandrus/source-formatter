@@ -5,17 +5,16 @@ import typer
 app = typer.Typer()
 
 @app.command()
-#Location name, Author, date, date accessed, title, location link
 def format(
-    location: Optional[str],
-    author: Optional[str],
-    date: Optional[str],
-    date_accessed: Optional[str],
-    title: Optional[str],
-    location_link: Optional[str]
-    ):
+    location: Optional[str] = None,
+    author: Optional[str] = None,
+    date: Optional[str] = None,
+    date_accessed: Optional[str] = None,
+    title: Optional[str] = None,
+    location_link: Optional[str] = None,
+):
     """
-    Format a citation for a location.
+    Format a citation for a source.
     """
     if not location:
         location = typer.prompt("Name of location (e.g. 'Wikipedia')")
@@ -37,3 +36,12 @@ def format(
 {location_link}
 """
     typer.echo(citation)
+
+@app.command()
+def hello(name: Optional[str] = None):
+    if not name:
+        name = typer.prompt("What is your name?")
+    typer.echo(f"Hello {name}")
+
+if __name__ == "__main__":
+    app()
